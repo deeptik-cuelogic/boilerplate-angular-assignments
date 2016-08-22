@@ -1,0 +1,38 @@
+<div class="container-fluid paddingTP30">
+    <h3 class="page-title">{{setTitle}}</h3>
+    <form class="col-md-7" name="addForm" ng-submit="addNew()" novalidate>
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter name" name="name" ng-model="name" required>
+            <span style="color:red" ng-show="addForm.name.$dirty && addForm.name.$invalid">
+              <span ng-show="addForm.name.$error.required">Name is required.</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="email" required>
+            <span style="color:red" ng-show="addForm.email.$dirty && addForm.email.$invalid">
+              <span ng-show="addForm.email.$error.required">Email is required.</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">Age</label>
+            <input type="text" class="form-control" id="age" placeholder="Enter age" name="age" ng-model="age" required>
+            <span style="color:red" ng-show="addForm.age.$dirty && addForm.age.$invalid">
+              <span ng-show="addForm.age.$error.required">Age is required.</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label for="" class="col-md-12">Gender</label>
+                <label class="col-md-6">
+                    <input type="radio" name="gender" id="male" value="male" checked ng-model="gender"> Male
+                </label>
+                <label class="col-md-6">
+                    <input type="radio" name="gender" id="female" value="female" ng-model="gender"> Female
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

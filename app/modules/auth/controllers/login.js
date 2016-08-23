@@ -11,7 +11,8 @@
           var validUser = loginService.validateUser($scope.email, $scope.password);
           if(validUser){
             loginService.setCredentials($scope.email, $scope.password);
-            $location.url('dashboard');
+           // $location.url('dashboard');
+            $state.go('base.dashboard')
           }
           else{
             $scope.error = 'Invalid Username/Password';

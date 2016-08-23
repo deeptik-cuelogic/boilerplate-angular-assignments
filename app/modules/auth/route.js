@@ -16,6 +16,19 @@
                         controller: 'loginController'
                     }
                 }
+            })
+            .state('logOut', {
+                url: '/logOut',
+                views: {
+                    '@': {
+                        templateUrl: '',
+                        controller: ['$scope', '$state', 'localStorageServiceWrapper', function($scope, $state, localStorageServiceWrapper){
+
+                            localStorageServiceWrapper.clearAll();
+                            $state.transitionTo('login');
+                        }]
+                    }
+                }
             });
     }
 

@@ -8,10 +8,23 @@
     function stateProvider($stateProvider) {
 
         $stateProvider
-            .state('add_emp', {
-                url: '/add_user',
-                templateUrl: 'app/modules/user/views/add_user.html',
-                controller: 'userController'
+            .state('base.dashboard.user', {
+                url: '/add/user',
+                views: {
+                    'content': {
+                        templateUrl: 'app/modules/user/views/add_user.html',
+                        controller: 'userController'
+                    }
+                }
+            })
+            .state('base.dashboard.edit_user', {
+                url: '/edit/user?id',
+                views: {
+                    'edit_content': {
+                        templateUrl: 'app/modules/user/views/add_user.html',
+                        controller: 'userController'
+                    },
+                }
             });
     }
 

@@ -1,8 +1,9 @@
 <div class="container-fluid paddingTP30" ng-init="userList()">
     <tab-menu tab-menu-list="subTabMenus"></tab-menu>
     <div class="paddingTB20 clearfix">
-          <div ui-view></div>
-        <a ui-sref="add_emp" class="btn btn-info pull-right" role="button">Add user</a>
+    <div ui-view="content"></div>
+    <div  ui-view="edit_content"></div>
+    <a ui-sref="base.dashboard.user" class="btn btn-info pull-right" role="button">Add user</a>
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
@@ -53,7 +54,7 @@
             <td>{{emp.age}}</td>
             <td>{{emp.gender}}</td>
             <td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(emp.name)" confirm-delete="Do you want to delete a record?"/></td>
-            <!-- <td ng-controller="employeeController"><input type="button" value="Edit" class="btn btn-primary" ng-click="edit(emp.id)"></td> -->
+            <td><input type="button" value="Edit" class="btn btn-primary" ui-sref="base.dashboard.edit_user({id: emp.id})"></td>
           </tr>
         </tbody>
             </table>

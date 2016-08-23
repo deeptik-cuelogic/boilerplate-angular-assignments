@@ -1,5 +1,6 @@
 angular.module('dashboard.service', [])
-    .factory('dashboardService', ['$http', dashboardService]);
+    .factory('dashboardService', ['$http', dashboardService])
+    .factory('uniqueEmailService', ['dashboardService', uniqueEmailService]);
 
 
 
@@ -106,5 +107,24 @@ function dashboardService($http) {
                 "gender": 'Male'
             }]
     }
+
+
     //END
+};
+
+function uniqueEmailService(dashboardService){
+  var service = {};
+  service.checkEmail = checkEmail(email);
+  return service;
+
+  function checkEmail(){
+    var empList = dashboardService.getEmpList();
+    var uniqFlag = true;
+    empList.map(function(obj) {
+        if(obj.email == email){
+            uniqFlag = false;
+        }
+    });
+    return uniqFlag;
+  }
 };

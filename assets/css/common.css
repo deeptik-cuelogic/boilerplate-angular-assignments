@@ -1,0 +1,14 @@
+/*input.ng-invalid {
+    border-color: pink;
+}
+input.ng-valid {
+    border-color: lightgreen;
+}*/
+
+.ng-invalid.ng-dirty{
+  border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty{
+  border-color: #78FA89;
+}

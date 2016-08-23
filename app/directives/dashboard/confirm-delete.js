@@ -1,5 +1,6 @@
-angular.module('confirmDelete.directive', [])
-    .directive("confirmDelete", confirmDelete);
+angular.module('confirmDelete.directive', ['dashboard.service'])
+    .directive("confirmDelete", confirmDelete)
+    .directive('uniqueEmail', ['uniqueEmailService', uniqueEmail]);
 
 function confirmDelete() {
     return {
@@ -15,3 +16,20 @@ function confirmDelete() {
             }
       };
 };
+
+function uniqueEmail(uniqueEmailService){
+  return{
+    restrict: "A",
+    require: 'ngModel',
+    link: function (scope, element, attrs, ngModel) {
+            // element.bind('blur', function (e) {
+            //     if (!ngModel || !element.val()) return;
+            //     var keyProperty = scope.$eval(attrs.uniqueEmail);
+            //     var currentValue = element.val();
+            //     var unique = uniqueEmailService.checkEmail(currentValue);
+            //       ngModel.$setValidity('unique', unique);
+            //             //ngModel.$setValidity('unique', true);
+            // });
+        }
+  };
+}

@@ -14,5 +14,5 @@ input.ng-valid {
 }
 
 .greenBg{
-  background-color: green;
+  background-color: green !important;
 }

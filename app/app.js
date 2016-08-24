@@ -18,7 +18,8 @@
 
         ])
         .factory('apiInterceptor', ['localStorageServiceWrapper', '$location', apiInterceptor])
-        .config(['$urlRouterProvider', '$locationProvider', '$httpProvider', initializeConfigurationPhase]);
+        .config(['$urlRouterProvider', '$locationProvider', '$httpProvider', initializeConfigurationPhase])
+        .run(['$rootScope', '$state', 'localStorageServiceWrapper', 'dashboardService', checkUserLoggedIn]);
 
     function initializeConfigurationPhase($urlRouterProvider, $locationProvider, $httpProvider) {
         $locationProvider.html5Mode({
@@ -44,6 +45,32 @@
             return config;
         };
       return service;
+    }
+
+    function checkUserLoggedIn($rootScope, $state, localStorageServiceWrapper, dashboardService) {
+        $rootScope.$on('$stateChangeStart',
+            function (event, toState) {
+                isExist = false,
+                $rootScope.currentState = $state;
+
+                var currentUser = localStorageServiceWrapper.get('currentUser');
+                var email = (currentUser && currentUser.email != '') ? currentUser.email : null;
+
+                dashboardService.getEmpList().map(function(emp) {
+                   if(!isExist) {
+                        if(emp.email == email) {
+                            isExist = true;
+                        }
+                    }
+                });
+
+                if(isExist && toState.name == 'login' ){
+                    $state.transitionTo('base.dashboard');
+                    event.preventDefault();
+                }
+
+            }
+        );
     }
 
 })();

@@ -51,7 +51,6 @@
         };
 
         $scope.editUser = function(id) {
-          console.log("inside edit user"+id);
             if(id != null) {
                 $state.transitionTo('base.edit_user', {'id': id});
             }
@@ -79,6 +78,7 @@
                     $scope.deleteBtnTxt = 'Delete';
                     $scope.disabled = false;
                 }, 2000);
+                $scope.$apply();
             }
         }
     }

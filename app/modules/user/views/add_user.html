@@ -1,7 +1,8 @@
 <link rel="stylesheet" type="text/css" href="assets/css/common.css">
 <div class="container-fluid paddingTP30">
     <h3 class="page-title">{{setTitle}}</h3>
-    <form class="col-md-7" name="addForm" ng-submit="addForm.$valid && (editForm ? updateEmp(emp.id) : addNew())" novalidate>
+    <!-- <form class="col-md-7" name="addForm" ng-submit="addForm.$valid && (editForm ? updateEmp(emp.id) : addNew())" novalidate> -->
+    <form class="col-md-7" name="addForm"  novalidate>
         <div class="form-group">
             <label for="firstName">Name</label>
             <input type="text" class="form-control" id="firstName" placeholder="Enter name" name="name" ng-model="emp.name" required>
@@ -34,7 +35,8 @@
                 </label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" ng-if="!editForm">Submit</button>
-        <button type="submit" class="btn btn-primary" ng-if="editForm">Update</button>
+        <button save-user-btn="" user-action="userDetail()" ng-disabled="disabled" class="btn btn-primary">{{submitBtnTxt}}</button>
+        <!-- <button type="submit" class="btn btn-primary" ng-if="!editForm">Submit</button>
+        <button type="submit" class="btn btn-primary" ng-if="editForm">Update</button> -->
     </form>
 </div>

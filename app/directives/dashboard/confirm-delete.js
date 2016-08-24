@@ -1,6 +1,8 @@
 angular.module('confirmDelete.directive', ['dashboard.service'])
     .directive("confirmDelete", confirmDelete)
-    .directive('uniqueEmail', ['uniqueEmailService', uniqueEmail]);
+    .directive('uniqueEmail', ['uniqueEmailService', uniqueEmail])
+    .directive('saveUserBtn', saveUserBtn)
+    .directive('confirmSelectedRowsDelete', confirmSelectedRowsDelete);
 
 function confirmDelete() {
     return {
@@ -33,3 +35,38 @@ function uniqueEmail(uniqueEmailService){
         }
   };
 }
+
+function saveUserBtn(){
+  return {
+        restrict: "A",
+        link: function (scope, element, attrs) {
+            element.bind('click',function (event) {
+              var submitAction = attrs.userAction;
+                if(scope.addForm.$valid) {
+                    scope.submitBtnTxt = 'Saving......';
+                    scope.disabled = true;
+                    scope.$eval(submitAction);
+                }
+            });
+        }
+    };
+}
+
+function confirmSelectedRowsDelete() {
+    return {
+        restrict: "A",
+        link: function(scope, element, attrs){
+                element.bind('click', function(e){
+                  var message = attrs.confirmSelectedRowsDelete;
+                  var deleteAction = attrs.deleteAction;
+                  if(message && confirm(message)){
+                    scope.deleteBtnTxt = 'Deleting......';
+                    scope.disabled = true;
+                    scope.$eval(deleteAction);
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                  }
+                });
+            }
+      };
+};

@@ -1,1 +1,1 @@
-angular.module('user', ['dashboard.service']);
+angular.module('user', ['dashboard.service', 'user.service', 'confirmDelete.directive']);

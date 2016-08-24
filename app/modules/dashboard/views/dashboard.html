@@ -4,41 +4,42 @@
     <div ui-view="content"></div>
     <div  ui-view="edit_content"></div>
     <a ui-sref="base.dashboard.user" class="btn btn-info pull-right" role="button">Add user</a>
+    <button ng-show="isRowSelected" delete-action="deleteSelectedRows()" confirm-selected-rows-delete="Are you sure you want to delete selected records?" ng-disabled='disabled' class="btn pull-right">{{deleteBtnTxt}}</button>
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
             <table class="table table-striped">
               <thead>
                 <th>
-                  <a href="#" ng-click="sort_type = 'id'; sort_reverse = !sort_reverse"">
+                  <a href="#" ng-click="sort_type = 'id'; sort_reverse = !sort_reverse">
                     Id
                     <span ng-show="sort_type == 'id' && !sort_reverse" class="fa fa-caret-down"></span>
                     <span ng-show="sort_type == 'id' && sort_reverse" class="fa fa-caret-up"></span>
                   </a>
                 </th>
                 <th>
-                  <a href="#" ng-click="sort_type = 'name'; sort_reverse = !sort_reverse"">
+                  <a href="#" ng-click="sort_type = 'name'; sort_reverse = !sort_reverse">
                     Name
                    <span ng-show="sort_type == 'name' && !sort_reverse" class="fa fa-caret-down"></span>
                    <span ng-show="sort_ype == 'name' && sort_reverse" class="fa fa-caret-up"></span>
                 </a>
               </th>
               <th>
-              <a href="#" ng-click="sort_type = 'email'; sort_reverse = !sort_reverse"">
+              <a href="#" ng-click="sort_type = 'email'; sort_reverse = !sort_reverse">
                 Email
                 <span ng-show="sort_type == 'email' && !sort_reverse" class="fa fa-caret-down"></span>
                 <span ng-show="sort_type == 'email' && sort_reverse" class="fa fa-caret-up"></span>
               </a>
             </th>
             <th>
-              <a href="#" ng-click="sort_type = 'age'; sort_reverse = !sort_reverse"">
+              <a href="#" ng-click="sort_type = 'age'; sort_reverse = !sort_reverse">
                 Age
                 <span ng-show="sort_type == 'age' && !sort_reverse" class="fa fa-caret-down"></span>
                 <span ng-show="sort_type == 'age' && sort_reverse" class="fa fa-caret-up"></span>
               </a>
             </th>
             <th>
-              <a href="#" ng-click="sort_type = 'gender'; sort_reverse = !sort_reverse"">
+              <a href="#" ng-click="sort_type = 'gender'; sort_reverse = !sort_reverse">
                 Gender
                 <span ng-show="sort_type == 'gender' && !sort_reverse" class="fa fa-caret-down"></span>
                 <span ng-show="sort_type == 'gender' && sort_reverse" class="fa fa-caret-up"></span>
@@ -47,13 +48,13 @@
             <th>Action</th>
         </thead>
         <tbody>
-          <tr ng-repeat="emp in empList | orderBy:sort_type:sort_reverse">
+          <tr ng-repeat="emp in empList | orderBy:sort_type:sort_reverse" ng-class="{greenBg : isGreenBg}" ng-click="changeColor(emp.id)" ng-init="isGreenBg = false">
             <td>{{emp.id}}</td>
             <td>{{emp.name}}</td>
             <td>{{emp.email}}</td>
             <td>{{emp.age}}</td>
             <td>{{emp.gender}}</td>
-            <td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(emp.name)" confirm-delete="Do you want to delete a record?"/></td>
+            <td><input type="button" value="Delete" class="btn btn-primary" ng-click="removeRow(emp.id)" confirm-delete="Do you want to delete a record?"/></td>
             <td><input type="button" value="Edit" class="btn btn-primary" ui-sref="base.dashboard.edit_user({id: emp.id})"></td>
           </tr>
         </tbody>

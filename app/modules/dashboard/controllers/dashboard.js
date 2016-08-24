@@ -4,16 +4,19 @@
 
     angular
         .module('dashboard')
-        .controller('dashboardController', ['$scope', '$state', 'dashboardService', 'localStorageServiceWrapper', dashboardController]);
+        .controller('dashboardController', ['$scope', '$state', 'dashboardService', 'localStorageServiceWrapper', '$timeout', dashboardController]);
 
-    function dashboardController($scope, $state, dashboardService, localStorageServiceWrapper) {
+    function dashboardController($scope, $state, dashboardService, localStorageServiceWrapper, $timeout) {
 
         $scope.blackSpinner = 'resource/images/blackSpinner.gif';
         $scope.sort_reverse  = false
         $scope.sort_type = 'name';
-
+        $scope.deleteBtnTxt = 'Delete'
+        $scope.isRowSelected = false;
+        var ids = [];
         $scope.empList = dashboardService.getEmpList();
         var userName = '';
+
         $scope.empList.map(function(obj) {
           if(obj.email == localStorageServiceWrapper.get('currentUser').email)
              userName = obj.name;
@@ -32,11 +35,11 @@
             }]
         }
 
-        $scope.removeRow = function(name){
+        $scope.removeRow = function(id){
           var index = -1;
           var comArr = eval( $scope.empList );
           for( var i = 0; i < comArr.length; i++ ) {
-            if( comArr[i].name === name ) {
+            if( comArr[i].id === id ) {
               index = i;
               break;
             }
@@ -46,6 +49,31 @@
           }
           $scope.empList.splice( index, 1 );
         };
+
+        $scope.changeColor = function(row_id){
+          if(this.isGreenBg == true) {
+                this.isGreenBg = false;
+                ids.pop(row_id);
+            } else {
+                this.isGreenBg = true;
+                ids.push(row_id);
+            }
+            console.log(ids);
+              $scope.isRowSelected = ids.length > 0
+          };
+
+        $scope.deleteSelectedRows = function() {
+            if(ids.length > 0) {
+                $timeout(function() {
+                    for( var i = 0; i < ids.length; i++ ) {
+                        $scope.removeRow(ids[i]);
+                    }
+                    $scope.isRowSelected = false;
+                    $scope.deleteBtnTxt = 'Delete';
+                    $scope.disabled = false;
+                }, 2000);
+            }
+        }
     }
 
 })();

@@ -78,31 +78,31 @@ function dashboardService($http) {
             }, {
                 "id": 3,
                 "name": "Bobo",
-                "email": 'pqr@yopmail.com',
+                "email": 'pq1r@yopmail.com',
                 "age": 32,
                 "gender": 'Male'
             }, {
                 "id": 4,
                 "name": "Baby",
-                "email": 'pqr@yopmail.com',
+                "email": 'pqr2@yopmail.com',
                 "age": 22,
                 "gender": 'Female'
             }, {
                 "id": 5,
                 "name": "Nilesh",
-                "email": 'pqr@yopmail.com',
+                "email": 'pqr3@yopmail.com',
                 "age": 30,
                 "gender": 'Male'
             }, {
                 "id": 6,
                 "name": "amol",
-                "email": 'pqr@yopmail.com',
+                "email": 'pqr4@yopmail.com',
                 "age": 32,
                 "gender": 'Male'
             }, {
                 "id": 7,
                 "name": "ganesh",
-                "email": 'pqr@yopmail.com',
+                "email": 'pqr5@yopmail.com',
                 "age": 22,
                 "gender": 'Male'
             }]

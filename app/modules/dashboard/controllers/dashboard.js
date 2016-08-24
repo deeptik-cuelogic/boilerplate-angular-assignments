@@ -51,11 +51,11 @@
         };
 
         $scope.changeColor = function(row_id){
-          if(this.isGreenBg == true) {
-                this.isGreenBg = false;
+          if(this.isGreenBg) {
+                this.isGreenBg = !this.isGreenBg;
                 ids.pop(row_id);
             } else {
-                this.isGreenBg = true;
+                this.isGreenBg = !this.isGreenBg;
                 ids.push(row_id);
             }
             console.log(ids);

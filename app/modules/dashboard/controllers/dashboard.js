@@ -50,6 +50,13 @@
           $scope.empList.splice( index, 1 );
         };
 
+        $scope.editUser = function(id) {
+          console.log("inside edit user"+id);
+            if(id != null) {
+                $state.transitionTo('base.edit_user', {'id': id});
+            }
+        }
+
         $scope.changeColor = function(row_id){
           if(this.isGreenBg) {
                 this.isGreenBg = !this.isGreenBg;

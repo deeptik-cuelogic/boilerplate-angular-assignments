@@ -8,7 +8,7 @@
     function stateProvider($stateProvider) {
 
         $stateProvider
-            .state('base.dashboard.user', {
+            .state('base.user', {
                 url: '/add/user',
                 views: {
                     'content': {
@@ -17,10 +17,10 @@
                     }
                 }
             })
-            .state('base.dashboard.edit_user', {
+            .state('base.edit_user', {
                 url: '/edit/user?id',
                 views: {
-                    'edit_content': {
+                    'content': {
                         templateUrl: 'app/modules/user/views/add_user.html',
                         controller: 'userController'
                     },
